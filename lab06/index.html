@@ -55,7 +55,7 @@ d3.csv("./data.csv", function(d, i, columns) {
 
   g.append("g")
     .selectAll("g")
-    .data(d3.stack().keys(keys)(data))
+    .data(d3.stack().keys(keys))
     .enter().append("g")
       .attr("fill", function(d) { return z(d.key); })
     .selectAll("rect")
@@ -63,7 +63,7 @@ d3.csv("./data.csv", function(d, i, columns) {
     .enter().append("rect")
       .attr("x", function(d) { return x(d.data.ID); })
       .attr("y", function(d) { return y(d[1]); })
-      .attr("height", function(d) { console.log(y(d[0]) - y(d[1])); return y(d[0]) - y(d[1]); })
+      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
       .attr("width", x.bandwidth())
     .on("mouseover", function() { tooltip.style("display", null); })
     .on("mouseout", function() { tooltip.style("display", "none"); })
