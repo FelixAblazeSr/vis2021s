@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <style>
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', fantasy;
 }
 #main {
   width: 960px;
@@ -34,7 +34,7 @@ var y = d3.scaleLinear()
 
 // set the colors
 var z = d3.scaleOrdinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    .range(["#000000", "#9F35FF", "#FF2D2D", "#2894FF", "#79FF79", "#FF9224", "#484891"]);
 
 // load the csv and create the chart
 d3.csv("./data.csv", function(d, i, columns) {
