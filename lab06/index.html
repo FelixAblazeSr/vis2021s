@@ -40,14 +40,14 @@ var z = d3.scaleOrdinal()
 d3.csv("./data.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
   d.total = t;
-  console.log(d.total);
-  console.log(d);
+  //console.log(d.total);
+  //console.log(d);
   return d;
 }, function(error, data) {
   if (error) throw error;
 
   var keys = data.columns.slice(1);
-
+  console.log(keys);
   data.sort(function(a, b) { return b.total - a.total; });
   x.domain(data.map(function(d) { return d.ID; }));
   y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
