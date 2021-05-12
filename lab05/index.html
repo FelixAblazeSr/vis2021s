@@ -66,8 +66,8 @@
                  .data(data)
                  .enter()
                  .append('rect')
+                 .attr("class", "bar")
                  .attr({
-                  'fill':'#09c',
                   'width':0,
                   'height':30,
                   'x':function(d){
@@ -83,7 +83,7 @@
                   }
                  });
 
-                s.selectAll('text')
+             svg.selectAll('text')
                  .data(data)
                  .enter()
                  .append('text')
