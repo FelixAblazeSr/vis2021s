@@ -73,7 +73,11 @@ d3.csv("./data.csv", function(d, i, columns) {
       tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
       tooltip.select("text").text(d[1]-d[0]);
     });
-
+  g.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+  
   g.append("g")
       .attr("class", "axis")
       .call(d3.axisLeft(y).ticks(null, "s"))
