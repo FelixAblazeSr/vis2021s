@@ -48,7 +48,7 @@ d3.csv("./data.csv", function(d, i, columns) {
 
   var keys = data.columns.slice(1);
   
-  data.sort(function(a, b) { console.log(b); console.log(a); console.log(b.total - a.total); return b.total - a.total; });
+  data.sort(function(a, b) { return b.total - a.total; });
   x.domain(data.map(function(d) { return d.ID; }));
   y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
   z.domain(keys);
@@ -63,7 +63,7 @@ d3.csv("./data.csv", function(d, i, columns) {
     .enter().append("rect")
       .attr("x", function(d) { return x(d.data.ID); })
       .attr("y", function(d) { return y(d[1]); })
-      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+      .attr("height", function(d) { console.log(y(d[0]) - y(d[1])); return y(d[0]) - y(d[1]); })
       .attr("width", x.bandwidth())
     .on("mouseover", function() { tooltip.style("display", null); })
     .on("mouseout", function() { tooltip.style("display", "none"); })
