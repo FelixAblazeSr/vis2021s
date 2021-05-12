@@ -66,10 +66,11 @@
                  .data(data)
                  .enter()
                  .append('rect')
+                 .attr("class", "bar")
                  .attr({
                   'fill':'#09c',
-                  'width':0,
-                  'height':30,
+                  'width':30,
+                  'height':0,
                   'x':function(d){
                     return (d.x-1) * 35;
                   },
