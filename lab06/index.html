@@ -52,10 +52,10 @@ d3.csv("./data.csv", function(d, i, columns) {
   x.domain(data.map(function(d) { return d.ID; }));
   y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
   z.domain(keys);
-
+  console.log(d3.stack().keys(keys)(data))
   g.append("g")
     .selectAll("g")
-    .data(d3.stack().keys(keys))
+    .data(d3.stack().keys(keys)(data))
     .enter().append("g")
       .attr("fill", function(d) { return z(d.key); })
     .selectAll("rect")
