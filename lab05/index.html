@@ -47,9 +47,9 @@
             // Scale the range of the data in the domains
             x.domain(data.map(function (d) { return d.GB; }));
             y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
-            //console.log(d3.max(data, function (d) { return d.frequency; }))
+            console.log(d3.max(data, function (d) { return d.frequency; }))
 
-            /*svg.selectAll("rect")
+            svg.selectAll("rect")
                 .data(data)
                 .enter()
                 .append("rect")
@@ -61,56 +61,8 @@
                     return height
                 })
                 .attr("width", x.bandwidth())
-                .attr("height", 0);*/
-            svg.selectAll('rect')
-                 .data(data)
-                 .enter()
-                 .append('rect')
-                 .attr("class", "bar")
-                 .attr({
-                  'fill':'#09c',
-                  'width':30,
-                  'height':0,
-                  'x':function(d){
-                    return (d.x-1) * 35;
-                  },
-                  'y':0
-                 })
-                 .transition()
-                 .duration(1500)
-                 .attr({
-                  'height':function(d){
-                    return d.h;
-                  }
-                 });
+                .attr("height", 0);
 
-                s.selectAll('text')
-                 .data(data)
-                 .enter()
-                 .append('text')
-                 .text(function(d){
-                  return 0  ;
-                 })
-                 .attr({
-                  'fill':'#000',
-                  'x':function(d){
-                    return d.x * 35 - 12;
-                  },
-                  'y':3
-                 })
-                 .transition()
-                 .duration(1500)
-                 .attr({
-                  'y':function(d){
-                    return d.h + 3;
-                  }
-                 })
-                 .tween('number',function(d){
-                    var i = d3.interpolateRound(0, d.h);
-                      return function(t) {
-                      this.textContent = i(t);
-                    };
-                 });
             svg.selectAll("text")
                 .data(data)
                 .enter()
@@ -161,7 +113,6 @@
                 .attr("height", function (d) { return height - y(d.frequency); })
 
 
-            console.log(data);
         });
 
     </script>
