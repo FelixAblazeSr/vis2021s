@@ -61,7 +61,6 @@ d3.csv("./data.csv", function(d, i, columns) {
     .selectAll("rect")
     .data(function(d) { return d; })
     .enter().append("rect")
-      .attr("x", function(d) { return x(d.data.ID); })
       .attr("y", function(d) { return y(d[1]); })
       .attr("height", function(d) { return y(d[0]) - y(d[1]); })
       .attr("width", x.bandwidth())
@@ -105,7 +104,11 @@ d3.csv("./data.csv", function(d, i, columns) {
       .attr("height", 19)
       .attr("fill", z);
 
-
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9.5)
+      .attr("dy", "0.32em")
+      .text(function(d) { return d; });
 });
 
   // Prep the tooltip bits, initial display is hidden
