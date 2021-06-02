@@ -334,38 +334,6 @@
 		   	   .duration(3000)
 		   	   .attr('d', path)
 	   	}
-
-	   	function dragoverHandler(evt) {
-            evt.preventDefault();
-        }
-        function dropHandler(evt) {//evt 為 DragEvent 物件
-            evt.preventDefault();
-            var files = evt.dataTransfer.files;//由DataTransfer物件的files屬性取得檔案物件
-            //console.log(files[0])
-            for (let i = 0; i < files.length ; i++ ) {
-			    // 判斷是否為圖片
-			    if (!files[i].type.match('image.*')) {
-			      continue;
-			    }
-
-			    // 透過 FileReader 取得檔案內容
-			    let reader = new FileReader();
-
-			    // 設定檔案讀取完畢時觸發的事件
-			    reader.onload = event => {
-			      // event.target.result 為圖片編碼
-			      // 將圖片即時呈現在瀏覽器上
-			      let e = document.createElement('div');
-			      let html = '<img src="${event.target.result}">';
-			      e.innerHTML = html;
-
-			    };
-
-			    // 利用 DataURL 的格式讀取圖片
-			    reader.readAsDataURL(files[i]);
-			  }
-			}
-            
     </script>
     </script>
 </body>
