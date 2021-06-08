@@ -52,8 +52,12 @@
 								.attr("fill","none")
 								.attr("stroke","blue")
 								.attr("stroke-width",3)*/
+				setTimeout(function(){
 				    timer = setInterval(timeList, 1000);
 				    setInterval(subtitle(myVideo), myVideo.duration);
+				},5000);
+				    //timer = setInterval(timeList, 1000);
+				    //setInterval(subtitle(myVideo), myVideo.duration);
 				    //subtitle(myVideo);
 				    //setInterval(timeList, 1000);
 			});
