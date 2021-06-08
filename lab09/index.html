@@ -88,7 +88,7 @@
 								return "0" + minute + ":0" + time % 60;
 							}
 							else{
-								return "0" + minute + ":" + Math.floor(time / 10) + "" + time % 60;
+								return "0" + minute + ":" + Math.floor((time - minute * 60) / 10) + "" + time % 60;
 							}
 						}
 						//return d;
