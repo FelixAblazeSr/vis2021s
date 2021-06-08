@@ -120,10 +120,10 @@
 			function subtitle(myVideo){
 				d3.text("[Toolbxs]music.srt",function(data){
 					//console.log(data);
-					console.log("---------");
+					
 					var parsedCSV = d3.csvParseRows(data);
 
-					console.log(parsedCSV);
+					
 
 					d3.select("#srt")
 						.selectAll("p")
@@ -154,7 +154,7 @@
 								text = d;
 							}
 						})
-						console.log(myarray);
+						
 
 						
 						var svg = d3.select("body")
