@@ -83,7 +83,7 @@
 							return "00:" + time;
 						}
 						else if(time >= 60){
-							var minute = time / 60;
+							var minute = Math.floor(time / 60);
 							if (time % 60 < 10) {
 								return "0" + minute + ":0" + time % 60;
 							}
