@@ -7,8 +7,7 @@
     <style type="text/css">
 
         .bar {
-            fill:green;
-            opacity:0.7;
+            fill:grey;
         }
     </style>
 </head>
@@ -18,7 +17,7 @@
         var margin = { top: 20, right: 20, bottom: 30, left: 40 },
             width = window.innerWidth*2/3,
             height = window.innerHeight*2/3,
-            fontSize = 18;
+            fontSize = 15;
 
         var svg = d3.select("body").append("svg")
             .attr("width", width + margin.right + margin.left)
@@ -37,6 +36,8 @@
         d3.csv("./data.csv", rowConverter).then(function (data) {
             data.forEach(function (d) {
                 d.GB = +d.GB;
+                console.log("csv")
+                console.log(d)
             });
             // set the ranges
             var x = d3.scaleBand()
