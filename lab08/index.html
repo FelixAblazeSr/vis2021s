@@ -1,14 +1,767 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>D3 Page Template</title>
+    <title>Lab 8</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap');
+
+        h1, div {
+          background-color: rgba(255, 255, 0, 0.1);
+          font-family: 'Noto Serif JP', serif;
+          font-size: 24pt;
+          border: solid 1px black;
+          width: 90%;
+          margin: 5px auto;
+          padding: 10px;
+        }
+
+        div {
+          font-size: 12pt;
+        }
+        
+        body {
+            background-color: rgba(255, 128, 255, 0.1);
+        }
+
+        video:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
+        #path4568{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 102;
+        	animation: dash4568 5s linear forwards;
+        }
+        @keyframes dash4568 {
+			0% {
+				stroke-dashoffset: 102;
+			}
+			9% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4570{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 55;
+        	animation: dash4570 5s linear forwards;
+        }
+        @keyframes dash4570 {
+        	0%,
+			9% {
+				stroke-dashoffset: 55;
+			}
+			18% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4572{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 255;
+        	animation: dash4572 5s linear forwards;
+        }
+        @keyframes dash4572 {
+        	0%,
+			18% {
+				stroke-dashoffset: 255;
+			}
+			27% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4574{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 25;
+        	animation: dash4574 5s linear forwards;
+        }
+        @keyframes dash4574 {
+        	0%,
+			27% {
+				stroke-dashoffset: 25;
+			}
+			36% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4578{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 17;
+        	animation: dash4578 5s linear forwards;
+        }
+        @keyframes dash4578 {
+        	0%,
+			36% {
+				stroke-dashoffset: 17;
+			}
+			45% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4580{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 16;
+        	animation: dash4580 5s linear forwards;
+        }
+        @keyframes dash4580 {
+        	0%,
+			45% {
+				stroke-dashoffset: 16;
+			}
+			54% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4582{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 73;
+        	animation: dash4582 5s linear forwards;
+        }
+        @keyframes dash4582 {
+        	0%,
+			54% {
+				stroke-dashoffset: 73;
+			}
+			63% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4584{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 92;
+        	animation: dash4584 5s linear forwards;
+        }
+        @keyframes dash4584 {
+        	0%,
+			63% {
+				stroke-dashoffset: 92;
+			}
+			72% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4586{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 135;
+        	animation: dash4586 5s linear forwards;
+        }
+        @keyframes dash4586 {
+        	0%,
+			72% {
+				stroke-dashoffset: 135;
+			}
+			81% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4588{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 48;
+        	animation: dash4588 5s linear forwards;
+        }
+        @keyframes dash4588 {
+        	0%,
+			81% {
+				stroke-dashoffset: 48;
+			}
+			90% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path4590{
+        	stroke-width:10;
+        	clip-path: url("#fname");
+        	stroke-dasharray: 138;
+        	animation: dash4590 5s linear forwards;
+        }
+        @keyframes dash4590 {
+        	0%,
+			90% {
+				stroke-dashoffset: 138;
+			}
+			99% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		/*------------------------------------*/
+		#path5813{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 70;
+        	animation: dash5813 5s linear forwards;
+        }
+        @keyframes dash5813 {
+			0% {
+				stroke-dashoffset: 70;
+			}
+			8% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5815{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 52;
+        	animation: dash5815 5s linear forwards;
+        }
+        @keyframes dash5815 {
+        	0%,
+			8% {
+				stroke-dashoffset: 52;
+			}
+			16% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5817{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 97;
+        	animation: dash5817 5s linear forwards;
+        }
+        @keyframes dash5817 {
+        	0%,
+			16% {
+				stroke-dashoffset: 97;
+			}
+			24% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5819{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 118;
+        	animation: dash5819 5s linear forwards;
+        }
+        @keyframes dash5819 {
+        	0%,
+			24% {
+				stroke-dashoffset: 118;
+			}
+			32% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5821{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 155;
+        	animation: dash5821 5s linear forwards;
+        }
+        @keyframes dash5821 {
+        	0%,
+			32% {
+				stroke-dashoffset: 155;
+			}
+			40% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5823{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 72;
+        	animation: dash5823 5s linear forwards;
+        }
+        @keyframes dash5823 {
+        	0%,
+			40% {
+				stroke-dashoffset: 72;
+			}
+			48% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5825{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 89;
+        	animation: dash5825 5s linear forwards;
+        }
+        @keyframes dash5825 {
+        	0%,
+			48% {
+				stroke-dashoffset: 89;
+			}
+			56% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5827{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 19;
+        	animation: dash5827 5s linear forwards;
+        }
+        @keyframes dash5827 {
+        	0%,
+			56% {
+				stroke-dashoffset: 19;
+			}
+			64% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5831{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 132;
+        	animation: dash5831 5s linear forwards;
+        }
+        @keyframes dash5831 {
+        	0%,
+			64% {
+				stroke-dashoffset: 132;
+			}
+			72% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5833{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 65;
+        	animation: dash5833 5s linear forwards;
+        }
+        @keyframes dash5833 {
+        	0%,
+			72% {
+				stroke-dashoffset: 65;
+			}
+			80% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5835{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 80;
+        	animation: dash5835 5s linear forwards;
+        }
+        @keyframes dash5835 {
+        	0%,
+			80% {
+				stroke-dashoffset: 80;
+			}
+			88% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5837{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 167;
+        	animation: dash5837 5s linear forwards;
+        }
+        @keyframes dash5837 {
+        	0%,
+			88% {
+				stroke-dashoffset: 167;
+			}
+			94% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5839{
+        	stroke-width:10;
+        	clip-path: url("#mname");
+        	stroke-dasharray: 154;
+        	animation: dash5839 5s linear forwards;
+        }
+        @keyframes dash5839 {
+        	0%,
+			94% {
+				stroke-dashoffset: 154;
+			}
+			100% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		/*------------------------------------*/
+		#path5228{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 78;
+        	animation: dash5228 5s linear forwards;
+        }
+        @keyframes dash5228 {
+			0% {
+				stroke-dashoffset: 78;
+			}
+			10% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5230{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 57;
+        	animation: dash5230 5s linear forwards;
+        }
+        @keyframes dash5230 {
+        	0%,
+			10% {
+				stroke-dashoffset: 57;
+			}
+			20% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5232{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 141;
+        	animation: dash5232 5s linear forwards;
+        }
+        @keyframes dash5232 {
+        	0%,
+			20% {
+				stroke-dashoffset: 141;
+			}
+			30% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5236{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 36;
+        	animation: dash5236 5s linear forwards;
+        }
+        @keyframes dash5236 {
+        	0%,
+			30% {
+				stroke-dashoffset: 36;
+			}
+			40% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5238{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 34;
+        	animation: dash5238 5s linear forwards;
+        }
+        @keyframes dash5238 {
+        	0%,
+			40% {
+				stroke-dashoffset: 34;
+			}
+			50% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5240{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 136;
+        	animation: dash5240 5s linear forwards;
+        }
+        @keyframes dash5240 {
+        	0%,
+			50% {
+				stroke-dashoffset: 136;
+			}
+			60% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5242{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 243;
+        	animation: dash5242 5s linear forwards;
+        }
+        @keyframes dash5242 {
+        	0%,
+			60% {
+				stroke-dashoffset: 243;
+			}
+			70% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5244{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 78;
+        	animation: dash5244 5s linear forwards;
+        }
+        @keyframes dash5244 {
+        	0%,
+			70% {
+				stroke-dashoffset: 78;
+			}
+			80% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5246{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 117;
+        	animation: dash5246 5s linear forwards;
+        }
+        @keyframes dash5246 {
+        	0%,
+			80% {
+				stroke-dashoffset: 117;
+			}
+			90% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+		#path5248{
+        	stroke-width:10;
+        	clip-path: url("#lname");
+        	stroke-dasharray: 187;
+        	animation: dash5248 5s linear forwards;
+        }
+        @keyframes dash5248 {
+        	0%,
+			90% {
+				stroke-dashoffset: 187;
+			}
+			100% {
+				stroke-dashoffset: 0;/*會根據數質變速*/
+			}
+		}
+    </style>
     <script src="http://d3js.org/d3.v6.min.js" charset="utf-8"></script> <!-- v6.5.0 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <script type="text/javascript">
-      // Your beautiful D3 code will go here
+    <h1>
+        lab08 漢字書寫 (鉛筆字) (毛筆字也OK!) Path Animation
+    </h1>
+    <div>
+      限定使用 D3.js，參考以下影片。
+    	<ul>
+    		<li><a href="https://bl.ocks.org/basilesimon/f164aec5758d16d51d248e41af5428e4">Animate path in D3</a></li>
+    		<li><a href="https://codepen.io/MyXoToD/post/howto-self-drawing-svg-animation">"Self-Drawing" SVG</a></li>
+    		<li><a href="https://stackoverflow.com/questions/15275362/how-to-transition-a-path-in-d3-js">How to transition a path in d3.js</a></li>
+        <li><a href="https://css-tricks.com/svg-line-animation-works/">How SVG Line Animation Works</a></li>
+        <li><a href="http://blog.roachking.net/blog/2014/10/31/osolve-team-drawing-animation/">使用 SVG 將圖片做成動畫</a></li>
+        <li><a href="https://www.hesyifei.com/">何一非</a></li>
+    	</ul>
+    </div>
+
+    <div>
+  		<video width="400" controls loop autoplay>
+  		  <source src="3.mp4" type="video/mp4">
+  		</video>
+    </div>
+
+    <div>
+      	展示區 (姓名)
+      	<hr>
+		    <div style="width: 256px;height: 256px;display: inline-block;">
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg825"
+   viewBox="-10 0 273 256"
+   version="1.1">
+  <clipPath id="fname">
+  <path
+     style="fill:none;stroke:#000000;stroke-opacity:1"
+     d="M181 16l8 4q3 3 -1 5q-20 4 -31 12q-8 5 -1 -2q2 -1 2 -2t-2 -2l-6 2t-5 1q-3 1 -3 0q-1 -2 2 -3q4 -1 11 -3q8 -3 13 -5q4 -1 6 -4l1 -1q1 -4 6 -2zM97 30q6 4 11 8q2 3 1 4q0 1 -3 1q-7 -1 -25 27h3h7q3 1 3 3q1 4 -2 4q-3 2 -7 2q-17 27 -30 36l9 -3q8 -3 12 -5 q8 -4 12 0q5 6 12 11q1 -1 7 -3t18 -5t19 -6q-8 -5 -15 -13q-4 -5 4 -10q2 0 2 -6q-1 -13 -2 -21q-1 -9 -3 -20q-1 -2 0 -2q0 -1 3 0v2q4 4 4 6v12q1 12 1 18q-1 14 13 31q11 -4 20 -7q6 -2 7 -6q1 -3 5 -2q7 1 11 2h3q3 1 3 3q0 1 -3 1q-5 1 -15 4l-8 2q-2 1 -6 2 q-24 9 -29 15q-7 5 -2 -2q1 -1 0 -2h-3q-3 1 -4 2q-10 3 -16 6t-14 1q1 3 -3 4q-5 1 -8 11q-10 25 -42 65q-4 4 -6 4t-3 -2q-11 -17 -9 -37q0 -4 1 -5q1 0 2 4q0 9 5 22q0 2 1 2q4 10 12 2q29 -36 39 -71q0 -9 -7 -9q-14 4 -38 20q-4 3 -5 2q-2 0 -2 -4q0 -6 4 -7h2 q4 -1 6 -4q-2 -2 5 -8q10 -10 19 -25q-29 14 -33 8q-3 -3 2 -6q9 0 28 -11q17 -20 19 -35q1 -3 -3 -4q-6 1 -15 5q-9 3 -17 -2q-2 -1 -2 -2q1 -1 4 -1q4 4 29 -6q7 -3 12 0zM182 49q1 3 -4 5q-13 5 -23 18q-5 5 -2 -2q2 -1 4 -5q1 -4 -1 -4h-5q-3 0 -3 -1t3 -2q6 -2 14 -7 q5 -5 17 -2zM165 73q2 -3 13 -2q2 1 2 3q-1 2 -4 2q-8 2 -12 5q-6 3 -11 1q-2 -1 2 -3q2 0 7 -4q1 -1 3 -2zM177 111q-2 -1 0 -2q8 1 14 2q2 1 1 3q-1 1 -3 1q-3 1 -4 2q-7 1 -10 4q-10 8 -20 15q20 33 42 47q6 5 17 4q14 0 20 1q7 1 16 2q3 2 3 3t-3 1q-10 -1 -16 -1h-17 q-13 2 -23 -7q-29 -25 -43 -48q-7 4 -8 3t5 -6q-3 -6 -9 -3q-5 2 -2 -2q3 -3 9 -4q2 0 7 6q28 -19 24 -21zM130 122h-1q-7 1 -5 24q0 41 4 52q2 5 7 -1q9 -8 18 -23q2 -3 3 -3q1 1 0 5q-3 8 -13 26q-2 2 -3 4q-2 2 -3 2q-1 1 -2 -1q-1 -1 -3 -2t-3 -1q-7 0 -8 -17 q-1 -7 -1 -19q-1 -13 -1 -28q0 -12 9 -20q4 -3 2 2z"
+     fill="currentColor"
+     id="first" />
+ </clipPath>
+  <path
+     id="path4568"
+     d="m 47.73482,34.894672 16.178439,5.392813 25.695167,-7.930608 8.247834,4.758365 -25.060721,40.287484 0.634449,-0.951673"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4570"
+     d="M 34.4114,90.091698 87.070632,73.596035"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4572"
+     d="M 78.505576,80.257745 49,117 l 3.17596,0.37299 -9.516728,8.56505 39.335811,-19.35068 13.323417,11.42007 -25.695164,47.58365 -26.012391,33.62577 -5.075589,-3.48946 -6.66171,-13.64065 -1.586121,-12.05452 -0.317225,-0.31723"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4574"
+     d="m 159.39777,29.501859 19.35068,-8.247832 3.48947,0.951673 h -0.95167"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4578"
+     d="m 157.1772,58.369269 16.49566,-6.66171"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4580"
+     d="m 157.81165,80.892193 14.90954,-7.930607"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4582"
+     d="m 131.79926,37.115242 6.02726,49.486988 -2.22057,1.903346 13.32342,15.543994"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4584"
+     d="m 103.88352,118.32466 78.67162,-26.012392 1.2689,-2.855019 6.02726,1.268897"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4586"
+     d="m 130,122 -6.44857,5.84139 -2.85502,12.05452 2.85502,56.46592 2.85501,4.12392 10.15118,2.85502 21.88848,-35.84635"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4588"
+     d="m 146.7088,137.99257 33.943,-23.79183 0.63445,-2.53779 4.75836,1.2689"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path4590"
+     d="m 134.01983,131.9653 12.05452,-2.53779 15.86121,20.61958 34.26023,36.16357 11.10285,3.80669 38.38414,1.58612 L 246,191.28625"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+</svg>
+
+		    </div>
+    <div style="width: 256px;height: 256px;display: inline-block;">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg5262"
+   viewBox="-10 0 266 256"
+   version="1.1">
+   <clipPath id="mname">
+  <path
+     style="fill:none;stroke:#000000;stroke-opacity:1"
+     id="path5260"
+     d="m 158.23297,5.5735906 q 9,7.0000004 8,8.0000004 -3,16 -6,29 6,1 35,-9 8,-3 21,2 2,1 1,3 0,2 -2,2 -5,0 -10,3 -26,15 -44,21 24,-6 29,-4 6,3 2,6 -46,4 -83,21 -7,3 -5,-1 2,-6 6,-6 0,2 4,-1 8,-3 27,-9 6,-8 11,-21 -14,3 -27,4 -3,-1 0,-2 7,-2 20,-5 l 8,-2 q 6,-32 3,-38.0000004 0,-3 2,-1 z m 11,123.9999994 -7,1 q -6,5 -2,26 14,-3 30,-5 -1,-5 8,-4 13,3 28,10 0,5 -5,4 -14,-7 -25,-7 -9,-1 -36,4 -2,8 -1,33 0,21 2,34 0,10 11,23 1,1 0,3 -2,1 -4,1 -8,-4 -15,-16 -6,-8 2,-10 3,0 3,-5 -2,-26 -4,-44 -1,-16 -1,-18 -38,8 -55.000001,15 -5,1 -2,-1 l 12.000001,-6 q -1,-2 2,-4 15,-8 14,-20 -2,-3 2,-1 3,5 6,6 3,3 3,4 0,1 -3,1 -4,1 -15,12 17,-5 36,-8 -2,-13 -3,-23 -10,3 -29,6 -6,0 0,-2 l 28,-8 q -2,-4 -4,-9 -2,-1 2,-2 10,5 14,8 13,-2 18,-5 3,-3 15,0 3,1 0,2 -15,5 -23,8 -7,2 -2,-2 3,-1 0,-1 z M 62.232969,92.573591 q -2,-4 2,-2 8,9 6,9 -1,2.999999 -2,12.999999 v 9 q 6,-3 16,-5 2,0 2,1 1,2 -1,2 -8,6 -17,12 -1,2 -1,4 -2,25 0,32 14,-14 33.000001,-35 7,-8 2,2 -37.000001,45 -61.000001,63 -14,11 -22,7 -4,0 1,-2 13,-2 39,-29 0,-12 -1,-14 -2,-3 2,-6 l 1,-10 q 0,2 1,-5 0,-4 -2,-2 -9,5 -20,5 h -3 q 0,-1 3,-3 11,-4 23,-13 1,-14 1,-20 -1,-5.999999 -2,-12.999999 z m 112.000001,-8 h 3 q 2,-1 5,-2 7,-1 15,3 2,1 1,2 0,1 -2,1 -15,5 -50,21.999999 11,-1 21,-5 4,-4 12,-1 2,1 2,2 -1,2 -3,2 -7,1 -22,7 -5,3 -1,-1 2,-1 -3,-1 -9,3 -17,3 -5,0 -1,-2 l 8,-3 q -2,-3 2,-3 5,-2 10,-5 20,-8.999999 29,-15.999999 1,-2 -2,-2 -3,1 -5,1 -16,3 -24,6 -10,4 -21,5 -6,0 -16,2.999999 -2,1 -4,5 3,4 9,9 4,3 5,5 0,4 -3,3 -1,0 -2,-1 -3,-4 -8,-7 -6,-5 -1,-10 -1,-3 4,-5.999999 33,-12 59,-14 z m -15,-37 q -1,2 -4,7 -5,11 -7,15 17,-6 53,-30 2,-1 2,-3 -2,-2 -4,-2 -8,3 -20,7 -13,4 -20,6 z m -79.000001,12 q 2,1 12,3 3,2 0,4 -9,-3 -34,9 -13,5 -24,3 -5,0 0,-1 12,-1 34,-10 6,-2 7,-6 1,-2 5,-2 z" />
+ </clipPath>
+  <path
+     id="path5813"
+     d="m 29.118585,77.665273 29.114384,-2.091682 22,-16 12.000001,7"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5815"
+     d="m 37.232969,141.57359 48,-22"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5817"
+     d="m 60.183344,86.869646 10.049625,12.703945 -6.9815,58.246429 1.150546,22.2439"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5819"
+     d="M 19.232969,204.57359 58.265767,178.52986 107.35576,125.98823"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5821"
+     d="m 125.23297,53.573591 74,-19 17,1 -55,29"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5823"
+     d="m 155.2952,0.5786486 7.28679,16.4911684 -14.34902,52.503774 v 0 0"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5825"
+     d="m 104.23297,86.573591 75.99074,-23.481909 10.00926,-2.518091"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5827"
+     d="m 111.23297,104.57359 9,17"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5831"
+     d="m 115.23297,98.573591 67,-16 10.26324,3.529024 -48.26324,22.470975"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5833"
+     d="m 129.98317,116.01683 44.10429,-9.58789 -17.85449,9.14465"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5835"
+     d="m 117.32716,141.32885 67.49874,-17.64171 -9.97141,4.9857"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5837"
+     d="m 126.23297,142.57359 2.59966,8.34315 -23.77797,20.70984 91.17831,-17.05299 2,-7 23,14"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5839"
+     d="m 143.40622,116.78386 11.12195,13.80656 4.21867,101.2481 -5.51387,4.73507 21.62152,17.89235"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+</svg>
+	</div>
+	<div style="width: 256px;height: 256px;display: inline-block;">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg4677"
+   viewBox="-10 0 266 256"
+   version="1.1">
+   <clipPath id="lname">
+  <path
+     style="fill:none;stroke:#000000;stroke-opacity:1"
+     id="path4675"
+     d="m 182.64508,42.175777 q 0,1 1,1 10,3 16,5 v 2 q -3,3 -5,2 h -6 q -5,0 -17,2 -3,1 -4,1 -2,1 -4,1 -18,6 -35,3 -5,-1 1,-2 h 5 q 15,-2 38,-9 1,-3 4,-5 3,-2 6,-1 z m 15,47 q 2,-1 5,0 10,2 16,3 8,4 12,8.000003 0,3 -5,1 -13,-2.000003 -20,-3.000003 h -15 q -1,1 -2,1 -9,0 -24,3.000003 0,10 -1,30 -1,23 0,34 -2,57 2,60 3,8 6,13 2,6 3,8 -3,2 -5,1 l -9,-12 q -9,-14 -13,-14 -3,-1 0,-5 2,-1 7,-3 2,-1 5,-2 0,-15 -1,-62 v -47 q -7,1 -24,5 2,0 -5,1 -7,2 -15,-1 -1,0 1,-2 17,-1 43,-8.000003 -1,-24 -5,-33 v -1 q 1,0 3,1 1,2 2,3 8,5 7,10 -2,8 -1,19 h 7 q 12,-2 22,-4 1,-2 4,-4 z m -121,-74 q -1,-2 1,-1 2,4 9,10 2,2 1,3 -4,6 -3,26 2,0 7,-2 6,-1 8,-3 3,-1 14,2 2,1 1,2 -7,3 -11,3 -3,1 -7,1 -8,1 -12,2 -1,7 -1,17 1,4 1,6 25,-7 37,10 3,2 0,4 -1,1 -1,2 -2,2 -4,0 -5,0 -4,3.000003 -4,31 -29,36 0,2 -1,5 -1,3 0,4 3,0 9,-1 21,-4 23,-8 1,-2 4,-2 3,0 5,2 5,4 12,9 0,6 -2,6 -1,1 -8,-5 -7,-5 -17,-2 -11,2 -19,4 -4,1 -7,1 v 52 q -1,10 3,13 4,8 8,11 1,1 0,2 -2,3 -4,0 -7,-4 -11,-11 -3,-5 -8,-9 0,1 -1,-1 -2,0 -1,-3 0,-1 1,-2 0,-1 4,0 2,2 3,2 2,-1 2,-5 v -48 q -15,2 -44,11 -16,6 -26.9999997,5 -3,0 -1,-1 7.9999997,-4 20.9999997,-7 5,-1 20,-5 13,-2 31,-7 v -10 q -5,-1 -6,-3 -1,-1 1,-1 l 1,1 q 1,0 4,-1 v -6 q -9,5 -20,4 2,5 0,4 -9,-2 -15,-7 -2,0 -3,-3 v -2 q -1,-2 2,-7 -1,-2 -2,-6 -2,-4 -2,-8 0,-3.000003 1,-2.000003 8,24.000003 17,29.000003 8,1 23,-7 v -9 q -9,3 -6,0 3,-3 0,-2 -1,1 -2,1 -6,2 -10,1 -3,1 0,-1 l 18,-6 V 87.175777 q -7,2 -10,4 -5,3 -13,1 -2,0 0,-2 4,-1 23,-8 v -23 q -6,2 -10,3 -4,2 -1,-2 -5,1 -12,1 -7,0 -14,-2 -3,-1 1,-2 13,2 35,-3 v -14 q 1,-5 1,-8 0,-8 -3,-17 z m 8,71 q -2,10 -1,17.000003 3,0 9,-3 3,0 3,2 0,3 -3,2 -5,2 -9,5 v 9 h 3 6 q 0,0 2,2 -1,1 -4,2 -4,1 -7,2 v 8 q 20,-3 24,-33.000003 3,-14 -5,-16 h -2 q -8,0 -16,3 z" />
+ </clipPath>
+  <path
+     id="path5228"
+     d="m 36.021865,58.10598 37.968039,1.150547 29.914216,-8.053827 9.74096,-1.026923"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5230"
+     d="m 39.089989,93.772925 6.90328,27.613115 -2.348189,5.78974 19.989904,8.01682 h -0.767031"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5232"
+     d="m 56.64508,92.175777 41.12279,-11.44238 12.27249,2.684609 11.60472,7.757771 -8.92011,4.514726 -9.58788,26.079057 -15.340627,11.88898 -15.151383,-0.48276 v 0"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5236"
+     d="m 61.64508,112.17578 31,-8 v -4"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5238"
+     d="m 56.64508,128.17578 22,-2 12,-4"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5240"
+     d="m 1.888982,167.02439 117.739268,-29.14718 12.65602,9.20438"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5242"
+     d="m 75.907482,8.2489595 6.903279,19.1757775 -3.068124,179.101753 -9.097557,0.64929 25.58873,23.12868"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5244"
+     d="m 125.38099,56.188402 19.55929,2.684609 37.20101,-9.587888 1.50379,-6.109346 11,9"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5246"
+     d="m 121.16232,109.11355 80.53826,-14.957109 0.9445,-4.980664 28,11.000003"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     id="path5248"
+     d="m 158.64508,68.175777 3.16988,149.472673 -5.75273,2.30109 13.58285,28.22624"
+     style="fill:none;stroke:#000000;stroke-width:10px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+</svg>
+	</div>
+    </div>
+    <div>
+      Drag and Drop 展示區 (接收任何SVG)
+    </div>
+
+    <script type="text/javascript" >
+
+		
     </script>
-  </body>
-</html>
+  </html>
   
