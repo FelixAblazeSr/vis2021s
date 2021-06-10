@@ -27,7 +27,7 @@
 			var h;
 			var svgTime;
 			var timer;
-			console.log("video start")
+			
 			myVideo.addEventListener('loadedmetadata', function(e){
 				    //console.log(myVideo.videoWidth, myVideo.videoHeight);
 				    myVideo.volume = 0.1;
@@ -35,6 +35,7 @@
 				    myVideo.controls = false;
 				    w = myVideo.videoWidth;
 					h = myVideo.videoHeight;
+				console.log("video start")
 					svgTime = d3.select("body")
 								.select("#time")
 								.append("svg") //產生svg
