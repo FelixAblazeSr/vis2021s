@@ -1,225 +1,237 @@
 <!DOCTYPE html>
-
 <html>
-	<head>
-	    <meta charset="utf-8">
-	    <title>lab09</title>
-		<script src="https://d3js.org/d3.v4.js"></script>
-		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
-	</head>
-	<body>
-		<div style="top: 20%;left: 30%;position: absolute;z-index: -1;display:block; margin: 0 auto;">
-			<video id="myVideo" src="./videoplayback.mp4" type="video/mp4" controls></video>
-		</div>
-		<div id = "srt" style="top: 20%;left: 30%;display:block;position: absolute;margin: 0 auto;">
-			<!--<p>歌詞</p>-->
-		</div>
-		<div id = "time" style="top: 20%;left: 30%;display:block;position: absolute;margin: 0 auto;">
-			<!--<p>歌詞</p>-->
-		</div>
-		<script type="text/javascript">
+<head>
+	<title></title>
+	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	<style type="text/css">
 
-			var myarray = [];
-			var key,begin,end,duration,text;
-			var totalTime = [];
-			var myVideo = document.getElementById("myVideo");
-			var w;
-			var h;
-			var svgTime;
-			var timer;
-			myVideo.addEventListener('loadedmetadata', function(e){
-				    //console.log(myVideo.videoWidth, myVideo.videoHeight);
-				    console.log("video start")
-				    myVideo.volume = 0.1;
-				    myVideo.autoplay = true;
-				    myVideo.controls = false;
-				    w = myVideo.videoWidth;
-					h = myVideo.videoHeight;
-					svgTime = d3.select("body")
-								.select("#time")
-								.append("svg") //產生svg
-								.attr("id","svgTime")
-								.attr("width",w)
-								.attr("height",h)
-								.attr("z-index",1)
-								.attr("viewbox",function(){ //?
-									return "0, 0, " + w + ", "+ h;
-								})
-								/*.append("text")
-								.text("here")
-								.attr("x",w-40)
-								.attr("y",30)
-								.attr("font-size",16)
-								.attr("fill","none")
-								.attr("stroke","blue")
-								.attr("stroke-width",3)*/
-				    timer = setInterval(timeList, 1000);
-				    setInterval(subtitle(myVideo), myVideo.duration);
-				    //subtitle(myVideo);
-				    //setInterval(timeList, 1000);
-			});
-			//another method
-			//var minute,second;
-			//firefox設定about:config autoplay,uniq
-			//先讀檔(.srt轉.csv的)
+		body {
+			/* background-image: url("1a.png"); */
+		}
+
+		video {
+			position:absolute; 
+			top:50%; 
+			left:50%; 
+			margin-left:-480px; 
+			margin-top:-270px;
+		}
+
+		svg {
+			position:absolute; 
+			top:50%; 
+			left:50%; 
+			margin-left:-480px; 
+			margin-top:-270px;
+			border: 1px solid gray;
+		}
+
+		svg text {
+			font-size: 60px;
+		    fill: white;
+		    stroke: blue;
+		    font-family: 'MS PGothic';
+		}
+
+		svg text {
+			/* opacity:0.7; */
+		}
+
+		svg text:hover {
+			/* opacity:1; */
+		}
+
+		text:hover {
+			fill: red;
+		}
+
+		#replay:hover {
+			box-shadow: 0px 0px 5px 5px rgba(255, 128, 128, 0.5);
+		}
+
+		#video:hover {
+			box-shadow: 0px 0px 5px 5px rgba(128, 255, 128, 0.5);
+		}
+
+		#subtitle:hover {
+			box-shadow: 0px 0px 5px 5px rgba(128, 128, 255, 0.5);
+		}
+
+		#subtitle {
+			pointer-events: none;
+		}
+	</style>
+</head>
+<body>
+
+	<video id="video" width="960px" height="540" preload="auto" onended="document.getElementById('replay').style.display='inline'; document.getElementById('video').style.display='none'; d3.select('#subtitle').remove();">
+	    <source src="./videoplayback.mp4" type="video/mp4">
+	</video>
+
+	<div id="srt"></div>
+
+	<script type="text/javascript">
+
+		document.getElementById("video").style.display = "none";
+
+		d3.select('body')
+		  .append('svg')
+		  .attr('id', 'replay')
+		  .attr('width', 960)
+		  .attr('height', 540)
+		  .append('text')
+		  .text("Replay")
+		  .attr('x', 540)
+		  .attr('y', 279)
+		  .attr("text-anchor", "middle")
+		  .on('click', function(){
+		  	document.getElementById("video").play();
+		  	document.getElementById("video").style.display = "inline";
+		  	//document.getElementById("subtitle").style.display = "inline";
+		  	//this.style.display = 'none';
+		  	document.getElementById("replay").style.display = "none";
+		  	make_subtitle();
+		  })
+		  ;
+
+		var myarray = [];
+		var key;
+		var begin;
+		var end;
+		var dur;
+		var subtitle;
+
+		var time = 0;
+
+		function play_time(){
 			
-			var time = 0;
-			//setInterval(timeList, 1000);
+			time = 0;
+			
+			let timer = setInterval(() => {
 
-			function timeList(){
-				//console.log("time in");
-				d3.select("#svgTime")
-					.append("text")
-					.text(function(){
-						//console.log(time)
-						if(time < 10){
-							return "00:0" + time;
-						}
-						else if(time >= 10 && time < 60){
-							return "00:" + time;
-						}
-						else if(time >= 60){
-							var minute = Math.floor(time / 60);
-							if (time % 60 < 10) {
-								return "0" + minute + ":0" + time % 60;
-							}
-							else{
-								return "0" + minute + ":" + time % 60;
-							}
-						}
-						//return d;
+				var mytime;
+
+				if (time % 60 < 10) 
+					mytime = '0' + parseInt(time / 60) + ':' + '0' + time % 60;
+				else
+					mytime = '0' + parseInt(time / 60) + ':' + time % 60;
+
+			    d3.select('#subtitle')
+			      .append('text')
+			      .text(mytime)
+			      .attr('x', 800)
+			      .attr('y', 60)
+			      .attr('opacity', 0)
+			      .transition()
+			      .duration(1000)
+			      .attr('opacity', 1)
+			      .transition()
+			      .duration(1000)
+			      .attr('opacity', 0)
+			      .remove()
+			      ;
+
+			    time++;
+			}, 1000);
+		}
+
+
+		function make_subtitle(){
+
+			d3.text('[Toolbxs]music.srt', function(data){
+				console.log(data);
+				//alert(data);
+
+				parsedCSV = d3.csvParseRows(data);
+				console.log(parsedCSV);
+				//alert('parsedCSV.length = ' + parsedCSV.length);
+
+				d3.select('#srt')
+				  .selectAll('p')
+				  .data(parsedCSV)
+				  .enter()
+				  .append("p")
+				  .text(function(d, i){
+				  	//return d;
+				  	if ( !isNaN(d) && d != '' ){
+				  		key = parseInt(d);
+				  	} else if (d == '') {
+				  		myarray.push({
+				  			"key": key,
+				  			"begin": begin,
+				  			"end": end,
+				  			"dur": end - begin,
+				  			"subtile": subtile
+				  		});
+				  	} else if (d.length == 3 ){
+				  		begin = (parseInt(d[0][3]) * 10 + parseInt(d[0][4])) * 60 +
+				  		        (parseInt(d[0][6]) * 10 + parseInt(d[0][7]));
+
+				  		end =   (parseInt(d[1][11]) * 10 + parseInt(d[1][12])) * 60 +
+				  		        (parseInt(d[1][14]) * 10 + parseInt(d[1][15]));
+				  	} else {
+				  		subtile = d;
+				  	}   
+				  })
+				  ;
+
+				  // 完成歌詞
+				  console.log(myarray);
+
+				  // 完成歌詞
+				  var w = 960;
+				  var h = 540;
+
+				  var svg = d3.select('body')
+				    .append('svg')
+				    .attr('id', 'subtitle')
+				    .attr('width', w)
+				    .attr('height', h)
+				    .attr('viewbox', function(){
+				    	return "0, 0, " + w + ', ' + h;
+				    })
+				    ;
+
+				svg.selectAll('text')
+			       .data(myarray)
+			       .enter()
+			       .append('text')
+			       .text(function(d, i){
+						return d.subtile;
 					})
-					.attr("font-size",16)
-					.attr("fill","none")
-					.attr("stroke","white")
-					.attr("stroke-width",1)
-					.attr("x", w - 40)
-					.attr("y", 30)
-					.attr("opacity",1)
-					.transition()
-					.delay(10)
-					.duration(490)
-					.attr("opacity",1)
-					.transition()
-					.delay(490)
-					.duration(10)
-					.attr("opacity",0)
-					.remove()
-				time++;
-				if (time >= myVideo.duration) {
-					time = 0;
-					setInterval(subtitle(myVideo), myVideo.duration);
-				}
-			}
+			       .attr('begin', function(d, i){
+			       		return d.begin;
+			       })
+			       .attr('end', function(d, i){
+			       		return d.end;
+			       })
+			       .attr('x', w / 2)
+			       .attr('y', h - 50)
+			       .attr("text-anchor", "middle")
+			       //.style('display', 'none')
+			       .attr('opacity', 0)
+			       .transition()
+			       .delay(function(d){
+			     	   return (d.begin - d.dur / 2) * 1000;
+			       })
+			       .duration(function(d){
+			           return (d.dur + d.dur / 2) * 1000;
+			       })
+			       .attr('opacity', 1)
+			       .transition()
+		           .duration(function(d){
+		               return (d.dur / 6.0 * 1000.0);
+		           })
+			       .attr('opacity', 0)
+			       ;
+
+			    play_time();
+			})
+		}
 
 
-			function subtitle(myVideo){
-				d3.text("[Toolbxs]music.srt",function(data){
-					//console.log(data);
-					console.log("---------");
-					var parsedCSV = d3.csvParseRows(data);
 
-					console.log(parsedCSV);
-
-					d3.select("#srt")
-						.selectAll("p")
-						.data(parsedCSV) //或data
-						.enter()//執行次數=srt數吧
-						.append("p")
-						.text(function(d,i){
-							//歌詞處理
-							//return d;
-							if(!isNaN(d) && d != ""){
-								key = parseInt(d) - 1;
-							}
-							else if(d == ""){
-								myarray.push({
-									"key": key,
-									"begin": begin,
-									"end": end,
-									"duration": end - begin,
-									"text": text
-								});
-							}
-							else if(d.length == 3){ //,分隔
-								begin = (parseInt(d[0][3]) * 10 + parseInt(d[0][4])) * 60 + (parseInt(d[0][6]) * 10 + parseInt(d[0][7])) + (parseInt(d[1][0]) * 100 + parseInt(d[1][1]) * 10 + parseInt(d[1][2])) * 0.001;
-								end = (parseInt(d[1][11]) * 10 + parseInt(d[1][12])) * 60 + (parseInt(d[1][14]) * 10 + parseInt(d[1][15])) + parseInt(d[2] * 0.001);
-
-							}
-							else{
-								text = d;
-							}
-						})
-						console.log(myarray);
-
-						
-						var svg = d3.select("body")
-									.select("#srt")
-									.append("svg") //產生svg
-									.attr("width",w)
-									.attr("height",h)
-									.attr("z-index",1)
-									.attr("viewbox",function(){ //?
-										return "0, 0, " + w + ", "+ h;
-									})
-						
-
-						svg.append("rect")
-							.attr("width",w)
-							.attr("height",h)
-							.attr("fill","none")
-							.attr("stroke","black")
-
-						
-
-						svg.selectAll("text")
-							.data(myarray)
-							.enter()
-							.append("text")
-							.text(function(d){
-								return d.text[0];
-							})
-							.attr("font-size",24)
-							.attr("fill","none")
-							.attr("stroke","red")
-							.attr("x",w / 2)
-							.attr("y",function(d,i){
-								if(h - i * 7 < 0){
-									return 24;
-								}
-								else if(h - i * 7 > myVideo.videoHeight - 24){
-									return myVideo.videoHeight - 24;
-								}
-								return h - i * 7;
-							})
-							.attr('begin', function(d, i){
-					       		return d.begin;
-					        })
-					        .attr('end', function(d, i){
-					       		return d.end;
-					        })
-							.attr("text-anchor","middle")
-							.style("font-family","MS PGothic")
-							.attr("opacity",0)
-							.transition()
-							.delay(function(d){
-								return (d.begin - d.duration / 2) * 1000 - d.text.length* 15;
-							})
-							.duration(function(d){
-								return (d.duration + d.duration / 2) * 800;
-							})
-							.attr("opacity",1)
-							.transition()
-							.duration(function(d){
-								return (d.duration / 2 * 800);
-							})
-							.delay(function(d){
-								return d.text.length * 920;
-							})//改
-							.attr("opacity",0)
-					})
-			}
-		</script>
-	</body>
-	
+	</script>
+</body>
 </html>
