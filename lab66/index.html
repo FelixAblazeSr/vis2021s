@@ -8,7 +8,13 @@
     <style>
         html,
         body {
-            height: 200%;
+            height: 225%;
+            background-image: url(./media/heart3.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            
         }
         #training-section, #testing-section {
             height: 100%;
@@ -23,6 +29,7 @@
 
         .padding {
             height: 100%;
+           
         }
 
         #right {
@@ -35,13 +42,23 @@
             width: 40%;
             height: 100%;
             float: left;
+            
+        }
+        h1{
+            color: aliceblue;
+            text-shadow:3px 3px 3px #cccccc;
+        }
+        p,li{
+            color: aliceblue;
+
+
         }
     </style>
 </head>
 
 <body>
 
-
+    <div id="back">
         <div id="right">
             <div id="train-vs-test"></div>
         </div>
@@ -49,17 +66,60 @@
         <div id="left">
             <div id="training-section">
 				<h1>
-					訓練資料集的部分
+					---Heart Disease---
 				</h1>
                 <p>
-                    何謂「住宅價格指數」？
-「住宅價格指數」係以類似物價指數之概念，透過品質標準化且具代表性的估價標的(標準住宅)，做為衡量各時期住宅價格之依據，取代個案交易數據，呈現「固定品質」住宅價格之「相對變動」，透過指數的差異可呈現各時期相對於基期之價格變動情形，有助於觀察不動產價格趨勢。※右圖數字為標準住宅總價
-                </p>
+                    <p>
+                        一般健康的人每天心跳約十萬次，要打出8000公升以上的血液，流經全身各處，而且每天廿四小時不眠不休的，為維持人體正常運作而努力。為了維持這樣長年不休的劇烈運動，心臟本身也需要充足的養分與氧氣，而環繞在心臟表面的冠狀動脈(coronary artery)，就是供應心臟氧氣和養分的重要血管。
+                    </p>
+                    <br>
+                    <p>
+                        心絞痛                     
+                      
+                    <ul>
+                        <li> 一. 穩定型心絞痛－</li>
+                        <p>
+                            又稱慢性穩定型心絞痛，之所以稱為穩定，其特點就是患者的心絞痛史(如發作頻率、疼痛程度、症狀持續時間、發作時間)在三個月內沒有改變。大多數的穩定型 心絞痛是規律的，可預測其發生時間及模式。
+                            穩定型心絞痛常發生在心肌耗氧量突然增加(例如追趕公車)或是情緒劇烈起伏的時候。一般持續時間少於20分鐘， 且移除心絞痛促發因子、休息或是使用硝酸鹽類藥物(如：舌下硝化甘油含片)後便能使症狀獲得緩解。
+                        </p>
+                        <li>二. 不穩定型心絞痛－</li>
+                        <p>當患者心絞痛的頻率增加、胸痛加重且延長，就很可能代表他的冠狀動脈硬化正在快速進展中；
+                            由於動脈粥樣硬化斑塊破裂活化了凝血機制，造成血小板聚集和血栓 形成，血栓堆積在粥樣硬化斑塊附近而使斑塊體積增大。
+                            不穩定型心絞痛的發作時機較不規律，有可能發生在休息或運動的情況下，使用硝酸鹽類藥物緩解效果差或 無效。
+                            不穩定型心絞痛有可能發展為心肌梗塞甚至死亡，非常危險，應立即接受診治。</p>
+                        <li>三. 變異型心絞痛－</li>
+                        <p>變異型心絞痛也叫做Prinzmetal氏心絞痛，又因其發生常與冠狀動脈痙攣有關，故也被稱為血管痙攣型心絞痛；
+                            但與冠狀動脈硬化程度並無太大關係。疼 痛程度較穩定型心絞痛劇烈，且常發生在休息或睡眠時，
+                            尤其是在午夜至次日清晨這段時間。此類心絞痛同樣可用硝酸鹽類藥物獲得緩解。</p>
+                    </ul>   
+                    </p> 
             </div>
             <div id="testing-section">
-				<h1>
-					測試資料集的部分
-				</h1>
+				<!-- <h1>
+					---testing-sectio---
+				</h1> -->
+                <p>
+                <br>
+                資料來源: 使用 UCI 心髒病數據集構建心髒病分類器                    
+                數據集有 14 個屬性：
+                <ul>
+                    　<li>年齡：歲數</li>
+                    　<li>性別：性別（1 = 男性；0 = 女性）</li>
+                    　<li>cp：胸痛類型（值0：典型心絞痛；值1：非典型心絞痛；值2：非心絞痛；值3：無症狀）</li>
+                      <li>trestbps：入院時以 mm Hg 為單位的靜息血壓</li>
+                      <li>chol：以mg/dl計的血清膽汁</li>
+                      <li>fbs：空腹血糖 > 120 mg/dl（1 = 真；0 = 假）</li>
+                      <li>restecg：靜息心電圖結果（值 0：正常；值 1：有 ST-T 波異常；值 2：可能或確定左心室肥厚）</li>
+                      <li>thalach：達到最大心率</li>
+                      <li>exang：運動誘發的心絞痛（1 = 是；0 = 否）</li>
+                      <li>oldpeak：相對於休息，運動引起的 ST 壓低</li>
+                      <li>斜率：峰值運動ST段的斜率（值0：向上傾斜；值1：平坦；值2：向下傾斜）</li>
+                      <li>ca：通過熒光檢查著色的主要血管 (0-3) 的數量</li>
+                      <li>thal：地中海貧血（3 = 正常；6 = 固定缺陷；7 = 可逆缺陷）</li>
+                      <li>目標：心髒病（1 = 否，0 = 是）</li>
+                </ul>
+
+            </p>
             </div>
         </div>
         
@@ -71,7 +131,7 @@
 
         <script>
             var Lipsum = "";
-            var Lipsum2="國內因少子化及家庭結構改變，致家戶人口有逐年減少的情形，加以購屋選擇多以總價為主要考量，連帶影響市場需求趨勢。地政局統計北市自101年8月實價登錄迄今買賣案件建物型態分布情形，發現套房及建物格局為2房以下的住宅占成交量4成以上，顯見低總價、小坪數的「小宅」已成為房地產市場主力產品之一，因此為提供更符合民眾需求的資訊，北市創新發布小宅價格指數，協助民眾解讀小宅房價趨勢。";
+            var Lipsum2="";
 
             window.onload = function () {
                 function resizeRight(){
@@ -112,7 +172,7 @@
 					.data(d3.range(1, 2))
 					.enter()
 					.append("img")
-					.attr("src", function(d){ return "media/" + d + ".jpg"})
+					.attr("src", function(d){ return "media/" + d + ".jpeg"})
                     .style('height', '350px')
                     .style('width', '350px')
                 ;
@@ -122,7 +182,7 @@
 					.data(d3.range(2, 3))
 					.enter()
 					.append("img")
-					.attr("src", function(d){ return "media/" + d + ".jpg"})
+					.attr("src", function(d){ return "media/" + d + ".jpeg"})
                     .style('height', '350px')
                     .style('width', '350px')
                 ;
@@ -162,6 +222,10 @@
                 */
             }
         </script>
+
+    </div>
+
+ 
 
 </body>
 
